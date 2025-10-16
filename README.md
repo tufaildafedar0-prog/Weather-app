@@ -62,13 +62,10 @@ Open `index.html` in your browser.
 Search for any city to view weather and forecast.  
 Drag the map pin to update location and weather.
 
-**Offline fallback:**
-
-If offline, the app shows the last successful weather data.
-
 ---
 
 ## 📧 Contact
 
 For any queries, email me at [tufaildafedar0@gmail.com].
+
 
