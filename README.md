@@ -1,44 +1,74 @@
+# 🌦️ Weather Forecast App
+
+A modern, responsive weather app built with HTML, CSS, and JavaScript. Instantly view current weather, 5-day forecast, and interactive map for any city worldwide.
 
 ---
 
-## 🛠️ Technologies Used
+## 🚀 Features
 
-- HTML5  
-- CSS3 (Bootstrap 5 + custom styles)  
-- JavaScript (vanilla, Chart.js, Leaflet)  
-- Font Awesome (icons)  
-- Google Fonts  
+### 🏠 Home Page
+Clean, user-friendly search for city weather.  
+Autocomplete city suggestions.  
+Last searched city display.  
+Interactive map with draggable pin to update location.
+
+### 🌤️ Weather & Forecast
+Current weather details: temperature, humidity, wind, pressure, and more.  
+5-day forecast with daily summaries.  
+Hourly temperature chart (Chart.js).  
+Weather icons and local time.
+
+### 🗺️ Map Integration
+Leaflet map with OpenStreetMap tiles.  
+Draggable marker to fetch weather for any location.  
+Coordinate readout and copy-to-clipboard button.
+
+### 📦 Offline & Caching
+Last successful weather data cached for offline fallback.  
+Progressive Web App (PWA) support with service worker.
+
+### 📱 Responsive Design
+Fully responsive for desktop, tablet, and mobile.  
+Uses Bootstrap 5 grid and custom styles.
+
+### 🧭 Navigation & Interactivity
+Smooth UX with loading spinner and error messages.  
+Clear button to reset last search.  
+Accessible, keyboard-friendly controls.
 
 ---
 
-## 📱 Responsive Design
+## 📂 Project Structure
 
+### 🛠️ Technologies Used
+HTML5  
+CSS3 (Bootstrap 5 + custom styles)  
+JavaScript (vanilla, Chart.js, Leaflet)  
+Font Awesome (icons)  
+Google Fonts
+
+### 📱 Responsive Design
 The app adapts to all screen sizes using Bootstrap’s grid and custom media queries.
 
 ---
 
 ## 📝 How to Use
 
-### Add your OpenWeatherMap API key:
+**Add your OpenWeatherMap API key:**
 
-1. Copy `config.example.js` to `config.js`  
-2. Edit `config.js` and set your API key  
-3. Open `index.html` in your browser
+Copy `config.example.js` to `config.js`.  
+Edit `config.js` and set your API key.  
+Open `index.html` in your browser.
 
-### Using the App:
+Search for any city to view weather and forecast.  
+Drag the map pin to update location and weather.
 
-- Search for any city to view weather and forecast  
-- Drag the map pin to update location and weather  
+**Offline fallback:**
 
-### Offline Fallback:
-
-- If offline, the app shows the last successful weather data
+If offline, the app shows the last successful weather data.
 
 ---
 
 ## 📧 Contact
 
-For any queries, email me at:  
-**[tufaildafedar0@gmail.com](mailto:tufaildafedar0@gmail.com)**
-
----
+For any queries, email me at [tufaildafedar0@gmail.com].
