@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Forecast</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json?v=2">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#11c8cb">
+</head>
+<body>
+  <!-- Diagnostics: visible banner when JS fails to load -->
+  <noscript>
+    <div style="background:#ffdddd;color:#900;padding:12px;text-align:center;font-weight:600;">
+      JavaScript is disabled in your browser. This app requires JavaScript to run.
+    </div>
+  </noscript>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-cloud-sun me-2"></i>Weather Forecast
+      </a>
+      <div class="d-flex">
+        <!-- Last searched city (filled from localStorage) -->
+        <div id="lastCityContainer" class="me-3 text-white small align-self-center" style="display:none;">
+          <i class="fas fa-history me-1"></i>Last: <span id="lastCity">-</span>
+        </div>
+        <button id="locBtn" class="btn btn-light btn-sm">
+          <i class="fas fa-location-arrow me-1"></i>My Location
+        </button>
+        <!-- Theme / Compact / Print controls removed as per user request -->
+      </div>
+    </div>
+  </nav>
+  <!-- Runtime debug banner (populated by script.js) -->
+  <div id="runtimeDebug" style="display:none; text-align:center; padding:6px 0; background:#fff3cd; color:#856404; font-weight:600;"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container-fluid my-4">
+    <div class="container">
+      <!-- SEARCH SECTION -->
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <div class="search-card card shadow">
+            <div class="card-body p-4">
+              <form id="formSearch" class="row g-2 justify-content-center align-items-center position-relative">
+                <div class="col-12 col-md-6 position-relative">
+                  <!-- City input -->
+                  <div class="input-group">
+                    <span class="input-group-text bg-light">
+                      <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" id="inputCity" class="form-control" placeholder="Enter city name (e.g. Pune, IN)" autocomplete="off">
+                  </div>
+                  <!-- Suggestion dropdown -->
+                  <ul id="listSuggestions" class="list-group suggestions-dropdown" style="display:none;"></ul>
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary-custom">
+                    <i class="fas fa-search me-1"></i>Search
+                  </button>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                  <div class="form-check form-switch ms-2">
+                    <input class="form-check-input" type="checkbox" id="toggleUnit">
+                    <label class="form-check-label small text-muted" for="toggleUnit" id="labelUnit">°C</label>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <button id="btnClearLast" type="button" class="btn btn-outline-secondary">
+                    <i class="fas fa-trash-alt me-1"></i>Clear
+                  </button>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                  <!-- global loading spinner (hidden by default) -->
+                  <div id="spinner" class="spinner-border text-primary" role="status" style="display:none; width:1.6rem; height:1.6rem;">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Error / status message (populated by script.js) -->
+      <div class="row justify-content-center mt-3">
+        <div class="col-12 col-lg-8">
+          <div id="errorMsg" class="alert alert-danger text-center" role="alert" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- MAP (centered) -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-12 col-md-8 text-center">
+          <div id="map" class="w-100" style="height:360px; border-radius:12px; display:block;"></div>
+          <div id="mapHint" class="small text-center text-muted mt-2">Tip: drag the pin to update location and fetch weather</div>
+          <!-- Coordinate readout and fetch status -->
+          <div id="coordsBox" class="mt-2 text-center">
+            <div id="coordsText" class="small text-muted">Lat: --, Lon: --</div>
+            <div class="mt-1">
+              <button id="btnCopyCoords" class="btn btn-sm btn-outline-secondary me-2" style="display:none;">Copy coords</button>
+              <span id="statusText" class="small text-primary" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEATHER INFO (below map) -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-12 col-md-8">
+          <section id="weatherResult" class="weather-card card shadow" style="display:none;">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                  <h2 id="cityName" class="mb-1 city-name"></h2>
+                  <div id="localTime" class="text-muted"><i class="far fa-clock me-1"></i><span>--</span></div>
+                </div>
+                <div class="text-end d-flex align-items-center">
+                  <img id="weatherIcon" alt="Weather icon" class="weather-icon" />
+                  <div id="temperature" class="temperature-display ms-3"></div>
+                </div>
+              </div>
+              <p id="description" class="weather-description text-center mb-4"></p>
+
+              <div class="weather-details row text-center g-3">
+                <div class="col-6 col-md-3">
+                  <div class="detail-card p-3 rounded">
+                    <div class="detail-icon mb-2"><i class="fas fa-tint"></i></div>
+                    <div class="small text-muted">Humidity</div>
+                    <div id="humidity" class="fw-bold fs-5">--%</div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="detail-card p-3 rounded">
+                    <div class="detail-icon mb-2"><i class="fas fa-wind"></i></div>
+                    <div class="small text-muted">Wind</div>
+                    <div id="wind" class="fw-bold fs-5">-- m/s</div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="detail-card p-3 rounded">
+                    <div class="detail-icon mb-2"><i class="fas fa-temperature-low"></i></div>
+                    <div class="small text-muted">Feels Like</div>
+                    <div id="feelsLike" class="fw-bold fs-5">--°C</div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="detail-card p-3 rounded">
+                    <div class="detail-icon mb-2"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="small text-muted">Pressure</div>
+                    <div id="pressure" class="fw-bold fs-5">-- hPa</div>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4" />
+              <h5 class="mb-3 text-center">5-Day Forecast</h5>
+              <div id="forecast" class="forecast-container mt-3">
+                <div id="forecastCards" class="d-flex"></div>
+                <div class="mt-4 w-100">
+                  <h6 class="text-center mb-2">Next 24 Hours</h6>
+                  <canvas id="hourlyChart" height="120"></canvas>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer / credit -->
+  <footer class="text-center small text-white mt-5 mb-4">
+    <div class="container">
+      <p class="mb-1">Powered by OpenWeather • Built for internship</p>
+      <p class="mb-0">©Tufailhasan 2025 Weather Forecast App</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Leaflet (OpenStreetMap) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Main script (we will update next) -->
+  <!-- Chart.js for hourly charts (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
