@@ -56,8 +56,7 @@ The app adapts to all screen sizes using Bootstrap’s grid and custom media que
 
 **Add your OpenWeatherMap API key:**
 
-Copy `config.example.js` to `config.js`.  
-Edit `config.js` and set your API key.  
+Config  `config.example.js` is there and inludes API key.
 Open `index.html` in your browser.
 
 Search for any city to view weather and forecast.  
@@ -72,3 +71,4 @@ If offline, the app shows the last successful weather data.
 ## 📧 Contact
 
 For any queries, email me at [tufaildafedar0@gmail.com].
+
