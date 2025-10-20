@@ -22,9 +22,6 @@ Weather icons and local time.
 Leaflet map with OpenStreetMap tiles.  
 Draggable marker to fetch weather for any location.  
 Coordinate readout and copy-to-clipboard button.
-
-### 📦 Offline & Caching
-Last successful weather data cached for offline fallback.  
 Progressive Web App (PWA) support with service worker.
 
 ### 📱 Responsive Design
@@ -65,6 +62,7 @@ Drag the map pin to update location and weather.
 ## 📧 Contact
 
 For any queries, email me at [tufaildafedar0@gmail.com].
+
 
 
 
