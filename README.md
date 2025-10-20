@@ -33,10 +33,6 @@ Smooth UX with loading spinner and error messages.
 Clear button to reset last search.  
 Accessible, keyboard-friendly controls.
 
----
-
-## 📂 Project Structure
-
 ### 🛠️ Technologies Used
 HTML5  
 CSS3 (Bootstrap 5 + custom styles)  
@@ -62,6 +58,7 @@ Drag the map pin to update location and weather.
 ## 📧 Contact
 
 For any queries, email me at [tufaildafedar0@gmail.com].
+
 
 
 
