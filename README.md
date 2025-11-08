@@ -2,7 +2,7 @@
 
 A modern, responsive weather app built with HTML, CSS, and JavaScript. Instantly view current weather, 5-day forecast, and interactive map for any city worldwide.
 
---
+---
 
 ## 🚀 Features
 
@@ -58,6 +58,7 @@ Drag the map pin to update location and weather.
 ## 📧 Contact
 
 For any queries, email me at [tufaildafedar0@gmail.com].
+
 
 
 
