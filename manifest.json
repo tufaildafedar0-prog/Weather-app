@@ -1,0 +1,9 @@
+{
+  "name": "Weather Forecast",
+  "short_name": "Weather",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#11c8cb",
+  "icons": []
+}
