@@ -132,11 +132,13 @@ function buildDirectWeatherUrlForCoords(lat, lon, type = 'weather') {
   return `${base}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
 }
 function buildProxyUrlForCity(city, type = 'weather') {
-  return `/.netlify/functions/getWeather?city=${encodeURIComponent(city)}&type=${type}&units=${units}`;
+  return `https://cosmic-narwhal-697cd9.netlify.app/.netlify/functions/getWeather?city=${encodeURIComponent(city)}&type=${type}&units=${units}`;
 }
+
 function buildProxyUrlForCoords(lat, lon, type = 'weather') {
-  return `/.netlify/functions/getWeather?lat=${lat}&lon=${lon}&type=${type}&units=${units}`;
+  return `https://cosmic-narwhal-697cd9.netlify.app/.netlify/functions/getWeather?lat=${lat}&lon=${lon}&type=${type}&units=${units}`;
 }
+
 
 // Fetch weather by City Name
 async function getWeatherByCity(city) {
