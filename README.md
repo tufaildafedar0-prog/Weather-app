@@ -1,16 +1,63 @@
-# Weather Forecast App
+# 🌦️ Weather Forecast App
 
-Quick notes for reviewers and for running locally.
+A modern, responsive weather app built with HTML, CSS, and JavaScript. Instantly view current weather, 5-day forecast, and interactive map for any city worldwide.
 
-Setup
-- Copy `config.example.js` to `config.js` and replace `YOUR_OPENWEATHERMAP_API_KEY_HERE` with your OpenWeatherMap API key.
-- Start a local web server (e.g., Live Server extension in VS Code or `npx http-server`).
+---
 
-Files added/changed for submission
-- `config.example.js` — example config. Do NOT commit your real API key; create `config.js` locally.
+## 🚀 Features
 
-Offline fallback
-- The app saves the last successful weather response in `localStorage` under `lastWeather`. If the network fetch fails, the app will render the cached weather automatically (if available).
+### 🏠 Home Page
+Clean, user-friendly search for city weather.  
+Autocomplete city suggestions.  
+Last searched city display.  
+Interactive map with draggable pin to update location.
 
-Notes
-- The service worker caches app shell assets. When testing changes to the SW or manifest, unregister the service worker and clear site data in DevTools to avoid stale caching.
+### 🌤️ Weather & Forecast
+Current weather details: temperature, humidity, wind, pressure, and more.  
+5-day forecast with daily summaries.  
+Hourly temperature chart (Chart.js).  
+Weather icons and local time.
+
+### 🗺️ Map Integration
+Leaflet map with OpenStreetMap tiles.  
+Draggable marker to fetch weather for any location.  
+Coordinate readout and copy-to-clipboard button.
+Progressive Web App (PWA) support with service worker.
+
+### 📱 Responsive Design
+Fully responsive for desktop, tablet, and mobile.  
+Uses Bootstrap 5 grid and custom styles.
+
+### 🧭 Navigation & Interactivity
+Smooth UX with loading spinner and error messages.  
+Clear button to reset last search.  
+Accessible, keyboard-friendly controls.
+
+### 🛠️ Technologies Used
+HTML5  
+CSS3 (Bootstrap 5 + custom styles)  
+JavaScript (vanilla, Chart.js, Leaflet)  
+Font Awesome (icons)  
+Google Fonts
+
+### 📱 Responsive Design
+The app adapts to all screen sizes using Bootstrap’s grid and custom media queries.
+
+---
+
+## 📝 How to Use
+
+Config  `config.js` is there and inludes API key.
+Open `index.html` in your browser.
+
+Search for any city to view weather and forecast.  
+Drag the map pin to update location and weather.
+
+---
+
+## 📧 Contact
+
+For any queries, email me at [tufaildafedar0@gmail.com].
+
+
+
