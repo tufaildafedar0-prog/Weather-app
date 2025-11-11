@@ -47,15 +47,19 @@ The app adapts to all screen sizes using Bootstrap’s grid and custom media que
 
 ## 📝 How to Use
 
-1. Copy the file config.example.js and rename it to config.js.
+1. Clone the project.
 
-2. Open your new config.js and paste your own OpenWeather API key.
+2. Copy the file config.example.js and rename it to config.js.
 
-3. Open index.html in your browser.
+3. Open your new config.js and paste your own OpenWeather API key.
 
-4. Search for any city to view weather and forecast.
+4. Open index.html in your browser.
 
-5. Drag the map pin to update location and weather.
+5. Search for any city to view weather and forecast.
+
+6. Drag the map pin to update location and weather.
+
+7. Scroll down for the weather information of searched city.
 
 ---
 
